@@ -33,13 +33,24 @@ let userBank = 0;
 let exitLoop = false;
 
 function cutGrassTeeth() {
-  console.log('You are now cutting grass with your teeth');
+  console.log('You cut a lawn with your teeth');
   userBank++;
   console.log(
-    `You spent ${ranNumHours(48,15)} hours cutting a customers lawn and made $1!`
+    `You spent ${ranNumHours(70,35)} hours cutting a customers lawn and made $1!`
   );
   console.log(`You have $${userBank} in your bank.`);
 }
+
+function cutGrassScissors(){
+  console.log('You cut a lawn with a pair of Scissors');
+  userBank = userBank + 5;
+  console.log(
+    `You spent ${ranNumHours(35,17)} hours cutting a customers lawn and made $5!`
+  );
+  console.log(`You have $${userBank} in your bank.`);
+}
+
+
 function cutGrass(){
   let userCut = prompt(`Press 'c' to cut grass.`);
   if (userCut === 'c'){
@@ -51,5 +62,15 @@ function cutGrass(){
 }
 
 while (!exitLoop){
-  cutGrass();
+  if (userBank < 5){
+    cutGrass();
+  }
+  if (userBank == 5){
+  let userScissors = prompt(`You have made enough $ to buy a pair of scissors! This means you can now charge $5 per lawn! Would you like to buy a pair of scissors? (y/n): `);
+    if (userScissors === 'y'){
+      cutGrassScissors();
+    } else {
+      cutGrass();
+    }
+  }
 }
