@@ -107,38 +107,6 @@ function cutGrassTeam(){
   console.log(`You have $${userInfo.cash} in your bank.`);
 }
 
-// function cutGrass(){
-//   let userCut = prompt(`Press 'c' to cut grass.`);
-//   if (userCut === 'c'){
-//     cutGrassTeeth();
-//   } else if(){
-
-//   } else {
-//     console.log(`You stopped cutting grass. You have $${userInfo.cash} in the bank.`);
-//     exitLoop = true;
-//   }
-// }
-
-// function cutGrass(){
-//   let userCut = prompt(`Press 'c' to cut grass.`);
-//   if (userCut === 'c'){
-//     if (userInfo.cash < 5){
-//       cutGrassTeeth();
-//     } else if (userInfo.cash === 5){
-//       let choice = prompt(`You have made enough $ to buy a pair of scissors. This will allow you make $5 per lawn. Would you like to buy them? (y/n): `);
-//       if (choice === 'y'){
-//         userInfo.cash = userInfo.cash - 5;
-//         console.log(`You bought a pair of scissors for $5! You now have $${userInfo.cash} left.`);
-//         cutGrassScissors();
-//       } else if (choice === 'n'){
-//         cutGrass();
-//       }
-//     }
-//   } else if (userCut === 'q'){
-//     exitLoop = true;
-//   }
-// }
-
 function cutGrass(){
   let choice = prompt(`Press 'c' to cut lawn.`);
   if (choice === 'c'){
@@ -158,13 +126,13 @@ function cutGrass(){
       }
     } else if (userInfo.cash > 4 && userInfo.cash < 30 && userInfo.hasScissors){
       userInfo.currentTool = cutGrassScissors();
-    } else if (userInfo.cash > 25 && !userInfo.hasPushMower){
+    } else if (userInfo.cash > 0 && !userInfo.hasPushMower){
       let newTool = prompt(`Do you want to upgrade to a push mower for $25? (y/n): `);
       if (newTool === 'y'){
         userInfo.cash = userInfo.cash - 25;
         console.log(`You bought a old-timey push mower for $25! You now have $${userInfo.cash} left.`);
         userInfo.hasPushMower = true;
-        //userInfo.hasScissors = true;
+        // userInfo.hasScissors = false;
         // userInfo.hasTeeth = false;
         userInfo.currentTool = cutGrassPushMower();
       } else if (newTool === 'n'){
@@ -173,14 +141,14 @@ function cutGrass(){
       }
     } else if (userInfo.cash > 25 && userInfo.cash < 250 && userInfo.hasPushMower){
       userInfo.currentTool = cutGrassPushMower();
-    } else if (userInfo.cash > 250 && !userInfo.hasPowerMower){
+    } else if (userInfo.cash > 0 && !userInfo.hasPowerMower){
       let newTool = prompt(`Do you want to upgrade to a power mower for $250? (y/n): `);
       if (newTool === 'y'){
         userInfo.cash = userInfo.cash - 250;
         console.log(`You bought a brand new battery Powered Mower for $250! You now have $${userInfo.cash} left.`);
         userInfo.hasPowerMower = true;
-        // userInfo.hasPushMower = true;
-        //userInfo.hasScissors = true;
+        // userInfo.hasPushMower = false;
+        // userInfo.hasScissors = false;
         // userInfo.hasTeeth = false;
         userInfo.currentTool = cutGrassPowerMower();
       } else if (newTool === 'n'){
@@ -189,21 +157,21 @@ function cutGrass(){
       }
     } else if (userInfo.cash > 250 && userInfo.cash < 500 && userInfo.hasPowerMower){
       userInfo.currentTool = cutGrassPowerMower();
-    } else if (userInfo.cash > 500 && !userInfo.hasTeam){
+    } else if (userInfo.cash > 0 && !userInfo.hasTeam){
       let newTool = prompt(`Do you want to hire a group of students for $500? (y/n): `);
       if (newTool === 'y'){
         userInfo.cash = userInfo.cash - 500;
         console.log(`You hired some students for $500! You now have $${userInfo.cash} left.`);
         userInfo.hasTeam = true;
-        // userInfo.hasPushMower = true;
-        //userInfo.hasScissors = true;
+        // userInfo.hasPowerMower = false;
+        // userInfo.hasPushMower = false;
+        // userInfo.hasScissors = false;
         // userInfo.hasTeeth = false;
         userInfo.currentTool = cutGrassTeam();
       } else if (newTool === 'n'){
-        //userInfo.hasTeeth = true;
         userInfo.currentTool;
       }
-    } else if (userInfo.cash > 500 && userInfo.hasTeam){
+    } else if (userInfo.cash > 0 && userInfo.hasTeam){
       userInfo.currentTool = cutGrassTeam();
     } 
   }else if (choice === 'q'){
