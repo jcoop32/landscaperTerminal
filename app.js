@@ -26,3 +26,19 @@ Using just your teeth, you can spend the day cutting lawns and make $1. You can 
 -You win the game when you have a team of starving students and $1000. In this situation, send a message to the user telling them, they’ve won.
 
 */
+function ranNumHours(MAX_NUM, MIN_NUM) {
+  return Math.floor(Math.random() * (MAX_NUM + MIN_NUM) + MIN_NUM);
+}
+let userBank = 0;
+
+function cutGrassTeeth() {
+  console.log('You are now cutting grass with your teeth');
+  userBank++;
+  console.log(
+    `You spent ${ranNumHours(
+      48,
+      15
+    )} hours cutting a customers lawn and made $${userBank}!`
+  );
+}
+cutGrassTeeth();
