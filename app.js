@@ -87,7 +87,15 @@ function cutGrassPushMower(){
   console.log(`You have $${userInfo.cash} in your bank.`);
 }
 
-
+function cutGrassPowerMower(){
+  userInfo.hasPowerMower = true;
+  console.log('You cut a lawn with a power mower.');
+  userInfo.cash = userInfo.cash + 100;
+  console.log(
+    `You spent ${ranNumHours(7,2)} hours cutting a customers lawn and made $100!`
+  );
+  console.log(`You have $${userInfo.cash} in your bank.`);
+}
 
 // function cutGrass(){
 //   let userCut = prompt(`Press 'c' to cut grass.`);
@@ -151,12 +159,28 @@ function cutGrass(){
         userInfo.currentTool = cutGrassPushMower();
       } else if (newTool === 'n'){
         //userInfo.hasTeeth = true;
-        userInfo.currentTool();
+        userInfo.currentTool;
       }
-    } else if (userInfo.cash > 25 && userInfo.hasPushMower){
+    } else if (userInfo.cash > 25 && userInfo.cash < 250 && userInfo.hasPushMower){
       userInfo.currentTool = cutGrassPushMower();
+    } else if (userInfo.cash > 250 && !userInfo.hasPowerMower){
+      let newTool = prompt(`Do you want to upgrade to a power mower for $250? (y/n): `);
+      if (newTool === 'y'){
+        userInfo.cash = userInfo.cash - 250;
+        console.log(`You bought a brand new battery Powered Mower for $250! You now have $${userInfo.cash} left.`);
+        userInfo.hasPowerMower = true;
+        // userInfo.hasPushMower = true;
+        //userInfo.hasScissors = true;
+        // userInfo.hasTeeth = false;
+        userInfo.currentTool = cutGrassPowerMower();
+      } else if (newTool === 'n'){
+        //userInfo.hasTeeth = true;
+        userInfo.currentTool;
+      }
+    } else if (userInfo.cash > 250 && userInfo.hasPowerMower){
+      userInfo.currentTool = cutGrassPowerMower();
     }
-  } else if (choice === 'q'){
+  }else if (choice === 'q'){
     exitLoop = true;
   }
 }
