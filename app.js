@@ -77,6 +77,17 @@ function cutGrassScissors(){
   console.log(`You have $${userInfo.cash} in your bank.`);
 }
 
+function cutGrassPushMower(){
+  userInfo.hasPushMower = true;
+  console.log('You cut a lawn with a push mower.');
+  userInfo.cash = userInfo.cash + 50;
+  console.log(
+    `You spent ${ranNumHours(17,7)} hours cutting a customers lawn and made $50!`
+  );
+  console.log(`You have $${userInfo.cash} in your bank.`);
+}
+
+
 
 // function cutGrass(){
 //   let userCut = prompt(`Press 'c' to cut grass.`);
@@ -118,17 +129,32 @@ function cutGrass(){
     } else if (userInfo.cash > 4 && !userInfo.hasScissors){
       let newTool = prompt(`Do you want to upgrade to a pair of Scissors for $5? (y/n): `);
       if (newTool === 'y'){
-        // userInfo.cash = userInfo.cash - 5;
+        userInfo.cash = userInfo.cash - 5;
         console.log(`You bought a pair of scissors for $5! You now have $${userInfo.cash} left.`)
         userInfo.hasScissors = true;
         // userInfo.hasTeeth = false;
         userInfo.currentTool = cutGrassScissors();
       } else if (newTool === 'n'){
-        userInfo.hasTeeth = true;
-        userInfo.currentTool = cutGrassTeeth();
+        //userInfo.hasTeeth = true;
+        userInfo.currentTool();
       }
-    } else if (userInfo.cash > 4 && userInfo.hasScissors){
+    } else if (userInfo.cash > 4 && userInfo.cash < 30 && userInfo.hasScissors){
       userInfo.currentTool = cutGrassScissors();
+    } else if (userInfo.cash > 25 && !userInfo.hasPushMower){
+      let newTool = prompt(`Do you want to upgrade to a push mower for $25? (y/n): `);
+      if (newTool === 'y'){
+        userInfo.cash = userInfo.cash - 25;
+        console.log(`You bought a old-timey push mower for $25! You now have $${userInfo.cash} left.`);
+        userInfo.hasPushMower = true;
+        //userInfo.hasScissors = true;
+        // userInfo.hasTeeth = false;
+        userInfo.currentTool = cutGrassPushMower();
+      } else if (newTool === 'n'){
+        //userInfo.hasTeeth = true;
+        userInfo.currentTool();
+      }
+    } else if (userInfo.cash > 25 && userInfo.hasPushMower){
+      userInfo.currentTool = cutGrassPushMower();
     }
   } else if (choice === 'q'){
     exitLoop = true;
