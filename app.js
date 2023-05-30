@@ -46,6 +46,7 @@ console.log(`As you upgrade your tools, prices per lawn will increase due to hig
 console.log(`Are You ready to get cutting!?\n`)
 console.log(`*********************************************`)
 
+const win = 10000
 //object for user
 const userInfo = {
   name: username,
@@ -69,6 +70,7 @@ function ranNumHours(MAX_NUM, MIN_NUM) {
 
 //if true -> breaks loop
 let exitLoop = false;
+/**************************************************************************************/
 
 //function for user to cut grass and make money
 function cutGrass(){
@@ -140,9 +142,11 @@ function cutGrassRobots(){
   );
   userInfo.lawnCount = userInfo.lawnCount + 2;
 }
+/**************************************************************************************/
 
 //function to give user option to upgrade tool
 function upgradeTool(){
+  toolList();
   if (userInfo.cash < 5){
     console.log(`\nYou do not have enough money to upgrade tools. Keep Cutting! \n`)
   } else if (userInfo.cash > 5 && !userInfo.hasScissors){
@@ -167,59 +171,71 @@ function upgradeToScissors(){
     if (choice === 'y'){
       userInfo.hasScissors = true;
       userInfo.cash = userInfo.cash - 5;
-      console.log(`Current balance: $${userInfo.cash}.`);
+      console.log(`Balance After Upgrade: $${userInfo.cash}.`);
       userInfo.currentTool = cutGrassScissors;
       userInfo.highestTool = 'Scissors';
     }
 }
-
 function upgradeToPushMower(){
   console.log(`\nYou can afford an old-timey push mower for $25.\n`);
     let choice = prompt(`Would you like to buy the push mower for $25? (y/n): `);
     if (choice === 'y'){
       userInfo.hasPushMower = true;
       userInfo.cash = userInfo.cash - 25;
-      console.log(`Current balance: $${userInfo.cash}.`);
+      console.log(`Balance After Upgrade: $${userInfo.cash}.`);
       userInfo.currentTool = cutGrassPushMower;
       userInfo.highestTool = 'Push Mower';
     }
 }
-
 function upgradeToPowerMower(){
   console.log(`\nYou can afford a brand new Battery Powered mower for $250.\n`);
     let choice = prompt(`Would you like to buy the Battery Powered mower for $250? (y/n): `);
     if (choice === 'y'){
       userInfo.hasPowerMower = true;
       userInfo.cash = userInfo.cash - 250;
-      console.log(`Current balance: $${userInfo.cash}.`);
+      console.log(`Balance After Upgrade: $${userInfo.cash}.`);
       userInfo.currentTool = cutGrassPowerMower;
       userInfo.highestTool = 'Power Mower';
     }
 }
-
 function upgradeToTeam(){
   console.log(`\nYou can afford to hire a group of student for $500.\n`);
     let choice = prompt(`Would you like to hire the students for $500? (y/n): `);
     if (choice === 'y'){
       userInfo.hasTeam = true;
       userInfo.cash = userInfo.cash - 500;
-      console.log(`Current balance: $${userInfo.cash}.`);
+      console.log(`Balance After Upgrade: $${userInfo.cash}.`);
       userInfo.currentTool = cutGrassTeam;
       userInfo.highestTool = 'Team of students';
     }
 }
-
 function upgradeToRobots(){
   console.log(`\nYou can afford to buy 5 Highly Efficient Robots for $5000.\n`);
     let choice = prompt(`Would you like to hire the students for $5000? (y/n): `);
     if (choice === 'y'){
       userInfo.hasTeam = true;
       userInfo.cash = userInfo.cash - 5000;
-      console.log(`Current balance: $${userInfo.cash}.`);
+      console.log(`Balance After Upgrade: $${userInfo.cash}.`);
       userInfo.currentTool = cutGrassRobots;
       userInfo.highestTool = 'Robots';
     }
 }
+
+
+function toolList(){
+  console.log(`Tool Upgrade List:\n`);
+  console.log(`1. Scissors - $5\n`);
+  console.log(`2. Push Mower - $25\n`);
+  console.log(`3. Power Mower - $250\n`);
+  console.log(`4. Team of Students - $500\n`);
+  console.log(`5. Robots - $5000\n`);
+  console.log(`****************************`);
+  console.log(`Current balance: $${userInfo.cash}.`);
+  console.log(`****************************`);
+
+}
+
+/**************************************************************************************/
 
 //check current balance
 function checkBalance(){
@@ -228,13 +244,15 @@ function checkBalance(){
 
 //main menu 
 function menu(){
-  let menuChoice = prompt(`\nMain Menu: (c)ut grass, (u)pgrade tool, check (b)alance, e(x)it: `);
+  let menuChoice = prompt(`Main Menu: (c)ut grass, (u)pgrade tool, check (b)alance, (r)eset, e(x)it: `);
   if (menuChoice === 'c'){
     cutGrass();
   } else if (menuChoice === 'u'){
     upgradeTool();
   } else if (menuChoice === 'b'){
     checkBalance();
+  } else if (menuChoice === 'r'){
+    resetGame();
   } else if (menuChoice === 'x'){
     console.log(`User has quit.`);
     displayStats();
@@ -244,6 +262,8 @@ function menu(){
   }
   
 }
+/**************************************************************************************/
+
 //user stats for game
 function displayStats(){
   console.log(`\n${username}, Nice job! Here are some stats from your game:\n`);
@@ -253,11 +273,32 @@ function displayStats(){
   console.log(`\nHighest Upgraded Tool: ${userInfo.highestTool}\n`);
 }
 
+function resetGame(){
+  let gameReset = prompt(`Are you sure you want to reset the game? (y/n): `);
+  if (gameReset === 'y'){
+    userInfo.cash = 0,
+    userInfo.lawnCount = 0,
+    userInfo.grossRevenue = 0,
+    userInfo.highestTool = 'Teeth'
+    userInfo.hasTeeth = true
+    userInfo.hasScissors = false
+    userInfo.hasPushMower = false
+    userInfo.hasPowerMower = false
+    userInfo.hasTeam = false
+    userInfo.hasRobots = false
+    userInfo.currentTool = cutGrassTeeth
+    console.log(`\nGame Reset.\n`)
+  } else if (gameReset === 'n'){
+    console.log(`\nReset cancelled.\n`);
+  }
+}
+
+
 //loop for program
 while (!exitLoop){
   menu();
-  if (userInfo.cash > 10000){
-    console.log(`Congratulations You have made $10,000 and won!\n`);
+  if (userInfo.cash > win){
+    console.log(`\nCongratulations You have made $10,000 and won!\n`);
     displayStats();
     break;
   }
