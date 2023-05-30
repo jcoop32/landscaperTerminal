@@ -27,18 +27,29 @@ Using just your teeth, you can spend the day cutting lawns and make $1. You can 
 
 */
 function ranNumHours(MAX_NUM, MIN_NUM) {
-  return Math.floor(Math.random() * (MAX_NUM + MIN_NUM) + MIN_NUM);
+  return Math.floor(Math.random() * (MAX_NUM - MIN_NUM) + MIN_NUM);
 }
 let userBank = 0;
+let exitLoop = false;
 
 function cutGrassTeeth() {
   console.log('You are now cutting grass with your teeth');
   userBank++;
   console.log(
-    `You spent ${ranNumHours(
-      48,
-      15
-    )} hours cutting a customers lawn and made $${userBank}!`
+    `You spent ${ranNumHours(48,15)} hours cutting a customers lawn and made $1!`
   );
+  console.log(`You have $${userBank} in your bank.`);
 }
-cutGrassTeeth();
+function cutGrass(){
+  let userCut = prompt(`Press 'c' to cut grass.`);
+  if (userCut === 'c'){
+    cutGrassTeeth();
+  } else {
+    console.log(`You stopped cutting grass. You have $${userBank} in the bank.`);
+    exitLoop = true;
+  }
+}
+
+while (!exitLoop){
+  cutGrass();
+}
