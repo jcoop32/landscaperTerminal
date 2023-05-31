@@ -4,7 +4,7 @@
 
 - Creating Game Description
 - Creating Game Flow
-- Create Game Logic  
+- Building Game  
 
 ### Game Description:
 You are starting a landscaping business, but all you have are your teeth.
