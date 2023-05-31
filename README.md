@@ -6,14 +6,14 @@
 - Creating Game Flow
 - Create Game Logic  
 
-###Game Description:
+### Game Description:
 You are starting a landscaping business, but all you have are your teeth.
 Using just your teeth, you can spend the day cutting lawns and make $1. You can do this as much as you want.
 1. At any point, if you are currently using your teeth, you can buy a pair of rusty scissors for $5. You can do this once, assuming you have enough money.
 2. Using the rusty scissors, you can spend the day cutting lawns and make $5. You can do this as much as you want.
 3. At any point, if you are currently using rusty scissors, you can buy an old-timey push lawnmower for $25. You can do this once, assuming you have enough money.
 
-###Game Flow:
+### Game Flow:
 The way I wanted the game to work in the beginning is much different from what I have now. To start, I want to get the users name and then present them with a introduction to the game. From there, the user is now shown a menu, where they are presented with 5 different options:
 1. Cut Grass -> by entering 'c' into the console they will execute the cutGrass() function.
 2. Upgrade Tool -> by entering 'u' into the console, the user can check and see if they are eligible to upgrade their tool.
@@ -22,7 +22,7 @@ The way I wanted the game to work in the beginning is much different from what I
 5. Exit -> by entering 'x' the user can end and exit the game.
  
  
-**Example of a Problem and Solution**
+### Example of a Problem and Solution:
 Problem: When I first started building this game, I didnt have a main menu where the user can interact with different options. The game would simply start and ask if they would like to cut grass. I was having some problems with this and found myself in a never ending loop. Here is an example of what was happening from my cutGrass() function:
 ```javascript
 else if (userInfo.cash > 4 && userInfo.cash < 30 && userInfo.hasScissors){
