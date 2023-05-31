@@ -13,6 +13,8 @@ Using just your teeth, you can spend the day cutting lawns and make $1. You can 
 2. Using the rusty scissors, you can spend the day cutting lawns and make $5. You can do this as much as you want.
 3. At any point, if you are currently using rusty scissors, you can buy an old-timey push lawnmower for $25. You can do this once, assuming you have enough money.
 
+ I then did the same for each tool upgrade, with the same process.
+
 ### Game Flow:
 The way I wanted the game to work in the beginning is much different from what I have now. To start, I want to get the users name and then present them with a introduction to the game. From there, the user is now shown a menu, where they are presented with 5 different options:
 1. Cut Grass -> by entering 'c' into the console they will execute the cutGrass() function.
