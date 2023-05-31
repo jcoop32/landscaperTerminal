@@ -21,7 +21,6 @@ Using just your teeth, you can spend the day cutting lawns and make $1. You can 
 
 -You win the game when you have a team of starving students and $1000. In this situation, send a message to the user telling them, they’ve won.
 
-
 Game Flow:
 if users bank balance is below $5 -> run cutGrassTeeth
 if the users bank is above $5 then ask if they want to upgrade to scissors 
@@ -31,7 +30,6 @@ if users bank is above $25 then ask if they want to upgrade to an old-timey push
   if yes -> run cutGrassPushMower()
   if no -> run current cutGrass function
 and continue for each upgrade once cash has hit certain balance.
-
 
 */
 
@@ -68,11 +66,9 @@ const userInfo = {
 function ranNumHours(MAX_NUM, MIN_NUM) {
   return Math.floor(Math.random() * (MAX_NUM - MIN_NUM) + MIN_NUM);
 }
-
 //if true -> breaks loop
 let exitLoop = false;
 /**************************************************************************************/
-
 //function for user to cut grass and make money
 function cutGrass(){
   userInfo.currentTool();
