@@ -30,6 +30,7 @@ if the users bank is above $5 then ask if they want to upgrade to scissors
 if users bank is above $25 then ask if they want to upgrade to an old-timey push mower
   if yes -> run cutGrassPushMower()
   if no -> run current cutGrass function
+and continue for each upgrade once cash has hit certain balance.
 
 
 */
@@ -87,7 +88,6 @@ function cutGrassTeeth() {
   );
   userInfo.lawnCount = userInfo.lawnCount + 1;
 }
-
 function cutGrassScissors(){
   userInfo.hasScissors = true;
   console.log('You cut a lawn with a pair of Scissors');
@@ -98,7 +98,6 @@ function cutGrassScissors(){
   );
   userInfo.lawnCount = userInfo.lawnCount + 1;
 }
-
 function cutGrassPushMower(){
   userInfo.hasPushMower = true;
   console.log('You cut a lawn with a push mower.');
@@ -109,7 +108,6 @@ function cutGrassPushMower(){
   );
   userInfo.lawnCount = userInfo.lawnCount + 1;
 }
-
 function cutGrassPowerMower(){
   userInfo.hasPowerMower = true;
   console.log('You cut a lawn with a power mower.');
@@ -120,7 +118,6 @@ function cutGrassPowerMower(){
   );
   userInfo.lawnCount = userInfo.lawnCount + 1;
 }
-
 function cutGrassTeam(){
   userInfo.hasTeam = true;
   console.log('Your team cut a lawn.');
@@ -131,7 +128,6 @@ function cutGrassTeam(){
   );
   userInfo.lawnCount = userInfo.lawnCount + 1;
 }
-
 function cutGrassRobots(){
   userInfo.hasRobots = true;
   console.log('Your Robots cut 2 lawns.');
@@ -220,8 +216,7 @@ function upgradeToRobots(){
       userInfo.highestTool = 'Robots';
     }
 }
-
-
+//display tools avaliable to buy
 function toolList(){
   console.log(`Tool Upgrade List:\n`);
   console.log(`1. Scissors - $5\n`);
