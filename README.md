@@ -1,25 +1,84 @@
-# Terminal Game
+# Landscaper
 
-### This lab is a DELIVERABLE. 
+### Process of creating terminal game 
 
-- Make sure to submit link to your homework repo.  
+- Creating Game Description
+- Creating Game Flow
+- Create Game Logic  
 
-Create any kind of game you want.  Use the `prompt()` function to get user input.  If you can't think of an idea, use Castle Battle or Landscaper
+**Game Description**
+You are starting a landscaping business, but all you have are your teeth.
+Using just your teeth, you can spend the day cutting lawns and make $1. You can do this as much as you want.
+1. At any point, if you are currently using your teeth, you can buy a pair of rusty scissors for $5. You can do this once, assuming you have enough money.
+2. Using the rusty scissors, you can spend the day cutting lawns and make $5. You can do this as much as you want.
+3. At any point, if you are currently using rusty scissors, you can buy an old-timey push lawnmower for $25. You can do this once, assuming you have enough money.
 
-You are going to use a combination of [Google](https://google.com), [Stack Overflow](https://stackoverflow.com/), and [chatGPT](https://chat.openai.com) to build your app.  In addition, you're going to practice working with git.
+**Game Flow**
+The way I wanted the game to work in the beginning is much different from what I have now. To start, I want to get the users name and then present them with a introduction to the game. From there, the user is now shown a menu, where they are presented with 5 different options:
+1. Cut Grass -> by entering 'c' into the console they will execute the cutGrass() function.
+2. Upgrade Tool -> by entering 'u' into the console, the user can check and see if they are eligible to upgrade their tool.
+3. Check Balance -> by entering 'b' into the console, the user can check their current balance.
+4. Reset -> by entering 'r' the user will be asked if they would like to reset their current game.
+5. Exit -> by entering 'x' the user can end and exit the game.
+ **Problems and Solutions**
+1. Problem: When I first started building this game, I didnt have a main menu where the user can interact with different options. The game would simply start and ask if they would like to cut grass. I was having some problems with this and found myself in a never ending loop. Here is an example of what was happening from my cutGrass() function:
+```javascript
+else if (userInfo.cash > 4 && userInfo.cash < 30 && userInfo.hasScissors){
+      userInfo.currentTool = cutGrassScissors();
+    } else if (userInfo.cash > 25 && !userInfo.hasPushMower){
+    } else if (userInfo.cash > 0 && !userInfo.hasPushMower){
+      let newTool = prompt(`Do you want to upgrade to a push mower for $25? (y/n): `);
+      if (newTool === 'y'){
+        userInfo.cash = userInfo.cash - 25;
+        console.log(`You bought a old-timey push mower for $25! You now have $${userInfo.cash} left.`);
+        userInfo.hasPushMower = true;
+        //userInfo.hasScissors = true;
+        // userInfo.hasScissors = false;
+        // userInfo.hasTeeth = false;
+        userInfo.currentTool = cutGrassPushMower();
+      }
+    }
+```
+Whenever the user was over the cash amount the program would just ask if you wanted to cut and would never call the correct function. 
+Solution: I fixed this by recreating the whole cutGrass() function starting from top to bottom. I wanted it to be very simple and concise. Here's what a snippet of what I did:
+```javacript
+const userInfo = {
+  name: username,
+  cash: 0,
+  lawnCount: 0,
+  grossRevenue: 0,
+  highestTool: 'Teeth',
+  hasTeeth: true,
+  hasScissors: false,
+  hasPushMower: false,
+  hasPowerMower: false,
+  hasTeam: false,
+  hasRobots: false,
+  currentTool: cutGrassTeeth,
+};
+```
+I first created a new object to hold different properties of the users information. You can see that the default tool is the cutGrassTeeth() shown below: 
+```javascript
+function cutGrassTeeth() {
+  console.log('You cut a lawn with your teeth');
+  userInfo.cash = userInfo.cash + 1;
+  userInfo.grossRevenue = userInfo.grossRevenue + 1;
+  console.log(
+    `You spent ${ranNumHours(70,35)} hours cutting a customers lawn and made $1!`
+  );
+  userInfo.lawnCount = userInfo.lawnCount + 1;
+}
+```
+I would then call this function in the main cutGrass() function:
+```javascript
+function cutGrass(){
+  userInfo.currentTool();
+}
+```
+This now runs the cutGrassTeeth() function and increments some of the properties. Once the userInfo.cash is greater than 5 it now is ready for an upgrade, which a user can check by entering 'u' in the menu.
 
-This app is more about getting used to the process of building an app, than building the app itself.  Build your app in small chunks, with each feature being a new chunk.  For example, "get the user's name" could be a feature.  As part of the process of building each feature, use some mixture of Google, Stack Overflow, or chatGPT to help you write the code.  Think critically about the code you get from your source(s) and whether it's exactly what you want.  Don't blindly copy/paste the code.  Rather, copy it, paste it, and make at least one change to it.  After each feature of the app is complete, document the process you used to build it.  Put the code you initially received from Google/Stack Overflow/chatGPT in a README file (explained below), followed the final code with your alterations.  Describe the pros and cons of the code you received, followed by your reasons for altering it the way you did.  Finally, once you've finished your feature and your documentation of it, use git to stage/commit/push the changes you made.  Check that your changes made it the remote GitHub repo.  Repeat this process of research, alteration, documentation, and committing/pushing for each feature that you build.
+**Game Logic**
 
-**GETTING STARTED**
 
-1. Get homework link and accept the assignment(refresh the browser). Click on `code` and copy `ssh` key. 
-2. Open your terminal `cd` into homework directory and run `git clone <ssh key>`
-3. `cd` into cloned directory and run npm i in it. This will install the prompt-sync package which will allow you to run the prompt() function. Example:
 
-  ```javascript
-  const username = prompt('What is your name? ');
-  console.log(`Your name is ${username}`);
-  ```
-4. Run `touch README.md` to create a README file.  This is where you're going to document your process using [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) which is like HTML, but more concise.  Just follow the formatting rules, and when you push the file to the remote github repo, it will be available there will look very nice.
 
-**EXAMPLE:**  As an example, take a look at [Party Dots](https://github.com/IntuitiveHarmony/party-dots#-the-prompts-begin).  In particular, the section titled The Prompts Begin is useful for seeing how the developer documented the prompts and their results.  Yours should be similar, but with the code added as well for reference.
